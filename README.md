@@ -368,3 +368,333 @@ public class User {
 
 این بخش شامل متدهای getter و setter برای هر یک از فیلدهای خصوصی است. این متدها به encapsulation داده‌ها کمک می‌کنند و امکان دسترسی و تغییر امن اطلاعات کاربر را فراهم می‌سازند.
 
+### فایل Register.java 
+
+این قسمت به کد کلاس `Register` پرداخته است که وظیفه ثبت نام کاربران جدید در اپلیکیشن اندروید بیمه را بر عهده دارد.
+
+#### پکیج‌ها و ایمپورت‌ها
+
+```java
+package com.example.insurance_android_app;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+```
+
+در این بخش، پکیج‌ها و کلاس‌های مورد نیاز برای فعالیت‌های اندروید، دسترسی به مجوزها، مدیریت داده‌های کاربر و دریافت شناسه دستگاه وارد شده‌اند.
+
+#### تعریف کلاس Register
+
+```java
+public class Register extends AppCompatActivity {
+
+    private EditText username, password, email;
+    private DatabaseHandler db;
+    TelephonyManager telephonyManager;
+    private String deviceId;
+```
+
+کلاس `Register` از `AppCompatActivity` ارث‌بری می‌کند و فیلدهای خصوصی برای ذخیره اطلاعات کاربر و دسترسی به پایگاه داده تعریف می‌کند.
+
+#### متد `onCreate`
+
+```java
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.register);
+
+        db = new DatabaseHandler(this);
+        telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+
+        username = (EditText) findViewById(R.id.username_field);
+        password = (EditText) findViewById(R.id.password_field);
+        email = (EditText) findViewById(R.id.email_field);
+
+        perm();
+    }
+```
+
+در این متد، نمای ثبت نام بارگذاری می‌شود و اشیاء `DatabaseHandler` و `TelephonyManager` مقداردهی اولیه می‌شوند. همچنین، فیلدهای ورودی برای نام کاربری، رمز عبور و ایمیل تنظیم می‌شوند. در نهایت، متد `perm` برای درخواست مجوز خواندن شناسه دستگاه فراخوانی می‌شود.
+
+#### متد `perm`
+
+```java
+    void perm() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, 432);
+    }
+```
+
+این متد برای درخواست مجوز خواندن وضعیت تلفن (شناسه دستگاه) از کاربر استفاده می‌شود.
+
+#### متد `onRequestPermissionsResult`
+
+```java
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+
+        switch (requestCode) {
+            case 432: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission granted!
+                    read();
+                } else {
+                    // don't have permission
+                }
+                return;
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+```
+
+این متد برای پردازش نتیجه درخواست مجوز استفاده می‌شود. اگر مجوز داده شود، متد `read` فراخوانی می‌شود تا شناسه دستگاه خوانده شود.
+
+#### متد `read`
+
+```java
+    @SuppressLint("HardwareIds")
+    void read() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        deviceId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+```
+
+این متد برای خواندن شناسه دستگاه (در اینجا از `ANDROID_ID` استفاده شده) استفاده می‌شود. اگر مجوز لازم وجود نداشته باشد، متد بدون انجام کاری بازمی‌گردد.
+
+#### متد `makeToast`
+
+```java
+    private void makeToast(String fName, String pass, String emailAddress) {
+        String result = "Hello " + fName + ". You have registered with email address: " + emailAddress + ".";
+        Toast.makeText(getBaseContext(), result, Toast.LENGTH_SHORT).show();
+
+        int userId = db.getRowCount() + 1;
+        User user = new User(userId, fName, pass, emailAddress, deviceId);
+        db.addUser(user);
+    }
+```
+
+این متد پیامی با اطلاعات کاربر جدید ایجاد می‌کند و آن را به صورت Toast نمایش می‌دهد. سپس، شناسه جدید کاربر محاسبه شده و کاربر جدید به پایگاه داده افزوده می‌شود.
+
+#### متد `onClickButton`
+
+```java
+    public void onClickButton(View view) {
+        if (view.getId() == R.id.register_button) {
+            makeToast(username.getText().toString(), password.getText().toString(), email.getText().toString());
+            Intent intent = new Intent(Register.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
+}
+```
+
+این متد برای پردازش کلیک بر روی دکمه ثبت نام استفاده می‌شود. اطلاعات کاربر خوانده شده و متد `makeToast` فراخوانی می‌شود. سپس، یک Intent برای بازگشت به صفحه اصلی (MainActivity) ایجاد و شروع می‌شود.
+
+### فایل OTP.java
+
+این گزارش به بررسی کد کلاس `OTP` پرداخته است که برای تایید شماره تلفن کاربران با استفاده از کد OTP در اپلیکیشن اندروید بیمه استفاده می‌شود.
+
+#### ‌پکیج‌ها و ‌ایمپورت‌ها
+
+```java
+package com.example.insurance_android_app;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
+
+import java.util.concurrent.TimeUnit;
+```
+
+در این بخش، ‌پکیج‌ها و کلاس‌های مورد نیاز برای اکتیویتی‌های اندروید، مدیریت تایید شماره تلفن و کار با Firebase وارد شده‌اند.
+
+#### تعریف کلاس OTP
+
+```java
+public class OTP extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+
+    private EditText edtPhone, edtOTP;
+
+    private Button verifyOTPBtn, generateOTPBtn;
+
+    private String verificationId;
+```
+
+کلاس `OTP` از `AppCompatActivity` ارث‌بری می‌کند و فیلدهای خصوصی برای مدیریت تایید شماره تلفن و دسترسی به Firebase تعریف می‌کند.
+
+#### متد `onCreate`
+
+```java
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.otp);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        edtPhone = findViewById(R.id.idEdtPhoneNumber);
+        edtOTP = findViewById(R.id.idEdtOtp);
+        verifyOTPBtn = findViewById(R.id.idBtnVerify);
+        generateOTPBtn = findViewById(R.id.idBtnGetOtp);
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            Toast.makeText(OTP.this, "Someone is logged in!", Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(OTP.this, "No one is here.", Toast.LENGTH_SHORT).show();
+        }
+
+        generateOTPBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(edtPhone.getText().toString())) {
+                    Toast.makeText(OTP.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
+                } else {
+                    String phone = "+98" + edtPhone.getText().toString();
+                    sendVerificationCode(phone);
+                }
+            }
+        });
+
+        verifyOTPBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(edtOTP.getText().toString())) {
+                    Toast.makeText(OTP.this, "Please enter OTP", Toast.LENGTH_SHORT).show();
+                } else {
+                    verifyCode(edtOTP.getText().toString());
+                }
+            }
+        });
+    }
+```
+
+در این متد، view ی تایید OTP بارگذاری می‌شود و اشیاء `FirebaseAuth` مقداردهی اولیه می‌شوند. همچنین، فیلدهای ورودی برای شماره تلفن و کد OTP تنظیم می‌شوند. دکمه‌های تایید و تولید کد OTP نیز با استفاده از `OnClickListener` تنظیم می‌شوند.
+
+#### متد `signInWithCredential`
+
+```java
+    private void signInWithCredential(PhoneAuthCredential credential) {
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent i = new Intent(OTP.this, Dashboard.class);
+                            startActivity(i);
+                            finish();
+                        } else {
+                            Toast.makeText(OTP.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+```
+
+این متد برای ورود کاربر با استفاده از اعتبارنامه تلفن استفاده می‌شود. در صورت موفقیت، کاربر به صفحه داشبورد هدایت می‌شود.
+
+#### متد `sendVerificationCode`
+
+```java
+    private void sendVerificationCode(String number) {
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber(number)            // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(mCallBack)           // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+        Toast.makeText(OTP.this, "OTP Sent!", Toast.LENGTH_SHORT).show();
+    }
+```
+
+این متد برای ارسال کد تایید به شماره تلفن وارد شده توسط کاربر استفاده می‌شود.
+
+#### متغیر `mCallBack`
+
+```java
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks
+            mCallBack = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        @Override
+        public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            super.onCodeSent(s, forceResendingToken);
+            verificationId = s;
+            Toast.makeText(OTP.this, "OTP Sent!", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+            final String code = phoneAuthCredential.getSmsCode();
+
+            if (code != null) {
+                edtOTP.setText(code);
+
+                verifyCode(code);
+            }
+        }
+
+        @Override
+        public void onVerificationFailed(FirebaseException e) {
+            Toast.makeText(OTP.this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    };
+```
+
+این متغیر به عنوان callback برای مدیریت حالات مختلف تایید شماره تلفن استفاده می‌شود. در صورت ارسال موفق کد، کد تایید دریافت شده و یا خطا رخ می‌دهد، پیام‌های مناسب به کاربر نمایش داده می‌شود.
+
+#### متد `verifyCode`
+
+```java
+    private void verifyCode(String code) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
+
+        signInWithCredential(credential);
+    }
+}
+```
+
+این متد برای تایید کد وارد شده توسط کاربر استفاده می‌شود. در صورت صحیح بودن کد، کاربر وارد حساب کاربری خود می‌شود.
+
+![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/157b0973-298f-4061-9bf5-d9545c90dccb)
+![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/bc26d2e6-386c-4b25-a341-d5888215a133)
+
+
+
