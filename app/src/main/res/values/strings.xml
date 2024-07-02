@@ -1,3 +1,32 @@
 <resources>
-    <string name="app_name">Insurance_Android_App</string>
+    <string name="app_name">X_O</string>
+    <string name="reset">RESET</string>
+    <string name="my_personal_xo_game">My Personal XO Game</string>
+    <string name="your_personal_coffee_maker">Create Your Personal Coffee Maker</string>
+    <string name="username_hint">set a username</string>
+    <string name="password_hint">set a strong password</string>
+    <string name="register_button">Register</string>
+    <string name="coffee">Coffee</string>
+    <string name="email_hint">xxx@yyy.zzz</string>
+    <string name="username_header">Username:</string>
+    <string name="email_header">Email:</string>
+    <string name="password_header">Password:</string>
+    <string name="login_button">login</string>
+    <string name="logout">Logout!</string>
+    <string name="x">X</string>
+    <string name="y">Y</string>
+    <string name="which_character_do_you_want">Which Character Do You Want?</string>
+    <string name="human">Human</string>
+    <string name="cpu">CPU</string>
+    <string name="choose_you_opponent">Choose You Opponent!</string>
+    <string name="start">Start</string>
+    <string name="o">O</string>
+    <string name="back">back</string>
+    <string name="level_1">level 1</string>
+    <string name="level_2">level 2</string>
+    <string name="level_3">level 3</string>
+    <string name="which_level_of_cpu_you_want_to_play_with">Which Level of CPU you want to play with?</string>
+    <string name="umbrella">umbrella</string>
+    <string name="we_protect_you_like_an_umbrella">We Protect You Like An Umbrella!</string>
+    <string name="register_to_get_cover">Register To Get Cover!</string>
 </resources>
