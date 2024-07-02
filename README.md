@@ -4,7 +4,7 @@
 
 این گزارش برای کد یک اپلیکیشن اندروید بیمه تهیه شده است. در ادامه به توضیح بخش‌های مختلف کد پرداخته می‌شود.
 
-### فایل MainActivity.java
+### فایل `MainActivity.java`
 
 #### پکیج‌ها و ایمپورت‌ها
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 - **دکمه ثبت نام (`register_button`)**: انتقال به صفحه ثبت نام انجام می‌شود.
 - **دکمه ریست دیتابیس (`reset_database`)**: دیتابیس ریست شده و پیغام مربوطه نمایش داده می‌شود.
 
-### فایل activity_main.xml
+### فایل `activity_main.xml`
 
 این فایل XML مربوط به رابط کاربری صفحه اصلی اپلیکیشن اندروید بیمه است.
 
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/79330ba6-d694-4c3b-b7e5-1481a48aabb0)
 
-### فایل splash.java
+### `فایل splash.java`
 
 #### پکیج‌ها و ایمپورت‌ها
 
@@ -271,7 +271,7 @@ public class splash extends AppCompatActivity {
 - **شروع فعالیت**: فعالیت `MainActivity` شروع می‌شود.
 - **پایان فعالیت جاری**: فعالیت `splash` خاتمه می‌یابد.
 
-### فایل splash_activity.xml
+### فایل `splash_activity.xml`
 
 #### عناصر XML و ویژگی‌ها
 
@@ -290,7 +290,7 @@ public class splash extends AppCompatActivity {
 فایل `splash_activity.xml` یک رابط کاربری ساده برای صفحه ابتدایی اپلیکیشن اندروید فراهم می‌کند. در اینجا از `ConstraintLayout` استفاده شده است. این فایل شامل یک تصویر پس‌زمینه با نام `splash` است که به عنوان پس‌زمینه صفحه ابتدایی تنظیم شده است. طراحی این فایل ساده است و به سرعت اجرا می‌شود.
 
 
-### فایل DatabaseHandler.java
+### فایل `DatabaseHandler.java`
 
 این کد شامل کلاس `DatabaseHandler` می‌باشد که وظیفه مدیریت عملیات مربوط به پایگاه داده SQLite را بر عهده دارد.
 
@@ -503,7 +503,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 این متد برای دریافت اطلاعات یک کاربر بر اساس نام کاربری (`username`) استفاده می‌شود. مقادیر کاربر از جدول `User` استخراج شده و به صورت یک شیء `User` برگردانده می‌شود.
 
-### فایل User.java
+### فایل `User.java`
 
 این کد به تحلیل کلاس `User` پرداخته است که به عنوان مدل داده‌ای کاربران در اپلیکیشن اندروید بیمه استفاده می‌شود.
 
@@ -579,7 +579,7 @@ public class User {
 
 این بخش شامل متدهای getter و setter برای هر یک از فیلدهای خصوصی است. این متدها به encapsulation داده‌ها کمک می‌کنند و امکان دسترسی و تغییر امن اطلاعات کاربر را فراهم می‌سازند.
 
-### فایل Register.java 
+### فایل `Register.java` 
 
 این قسمت به کد کلاس `Register` پرداخته است که وظیفه ثبت نام کاربران جدید در اپلیکیشن اندروید بیمه را بر عهده دارد.
 
@@ -718,7 +718,7 @@ public class Register extends AppCompatActivity {
 
 این متد برای پردازش کلیک بر روی دکمه ثبت نام استفاده می‌شود. اطلاعات کاربر خوانده شده و متد `makeToast` فراخوانی می‌شود. سپس، یک Intent برای بازگشت به صفحه اصلی (MainActivity) ایجاد و شروع می‌شود.
 
-### فایل register.xml
+### فایل `register.xml`
 
 این فایل مربوط به رابط کاربری صفحه ثبت نام در اپلیکیشن اندروید بیمه است.
 
@@ -916,7 +916,7 @@ public class Register extends AppCompatActivity {
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/d4d329be-19c2-4917-a375-e5a7da57561b)
 
 
-### فایل OTP.java
+### فایل `OTP.java`
 
 این گزارش به بررسی کد کلاس `OTP` پرداخته است که برای تایید شماره تلفن کاربران با استفاده از کد OTP در اپلیکیشن اندروید بیمه استفاده می‌شود.
 
@@ -1105,7 +1105,7 @@ public class OTP extends AppCompatActivity {
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/157b0973-298f-4061-9bf5-d9545c90dccb)
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/bc26d2e6-386c-4b25-a341-d5888215a133)
 
-###فایل otp.xml
+###فایل `otp.xml`
 
 این فایل XML مربوط به رابط کاربری صفحه OTP (رمز یک‌بار مصرف) در اپلیکیشن اندروید بیمه است. 
 
