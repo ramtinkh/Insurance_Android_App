@@ -4,7 +4,7 @@
 
 این گزارش برای کد یک اپلیکیشن اندروید بیمه تهیه شده است. در ادامه به توضیح بخش‌های مختلف کد پرداخته می‌شود.
 
-### فایل 'MainActivity.java'
+### فایل MainActivity.java
 
 #### پکیج‌ها و ایمپورت‌ها
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 - **دکمه ثبت نام (`register_button`)**: انتقال به صفحه ثبت نام انجام می‌شود.
 - **دکمه ریست دیتابیس (`reset_database`)**: دیتابیس ریست شده و پیغام مربوطه نمایش داده می‌شود.
 
-### فایل `activity_main.xml`
+### فایل activity_main.xml
 
 این فایل XML مربوط به رابط کاربری صفحه اصلی اپلیکیشن اندروید بیمه است.
 
@@ -222,8 +222,75 @@ public class MainActivity extends AppCompatActivity {
 
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/79330ba6-d694-4c3b-b7e5-1481a48aabb0)
 
+### فایل splash.java
 
-### فایل `DatabaseHandler.java`
+#### پکیج‌ها و ایمپورت‌ها
+
+```java
+package com.example.insurance_android_app;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.content.Intent;
+import android.os.Handler;
+```
+
+در این بخش، پکیج‌ها و کلاس‌های مورد نیاز برای توسعه صفحه ابتدایی (splash screen) اپلیکیشن ایمپورت شده‌اند. این پکیج‌ها شامل کتابخانه‌های مربوط به اکتیویتی‌ها و مدیریت زمان‌بندی عملیات‌ها می‌باشند.
+
+#### تعریف کلاس `splash`
+
+```java
+public class splash extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash_activity);
+```
+
+در این بخش، کلاس `splash` تعریف شده که از `AppCompatActivity` ارث‌بری می‌کند. در متد `onCreate`، اکتیویتی ایجاد شده و رابط کاربری `splash_activity` ست می‌شود.
+
+#### زمان‌بندی انتقال به MainActivity
+
+```java
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(splash.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
+    }
+}
+```
+
+در این بخش، یک `Handler` برای زمان‌بندی انتقال به فعالیت اصلی (MainActivity) ایجاد شده است. `postDelayed` یک `Runnable` را پس از یک تاخیر 2 ثانیه‌ای (2000 میلی‌ثانیه) اجرا می‌کند. این `Runnable` شامل کد زیر است:
+- **ایجاد Intent**: یک `Intent` جدید برای انتقال از `splash` به `MainActivity` ایجاد می‌شود.
+- **شروع فعالیت**: فعالیت `MainActivity` شروع می‌شود.
+- **پایان فعالیت جاری**: فعالیت `splash` خاتمه می‌یابد.
+
+### فایل splash_activity.xml
+
+#### عناصر XML و ویژگی‌ها
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".splash"
+    android:background="@drawable/splash">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+فایل `splash_activity.xml` یک رابط کاربری ساده برای صفحه ابتدایی اپلیکیشن اندروید فراهم می‌کند. در اینجا از `ConstraintLayout` استفاده شده است. این فایل شامل یک تصویر پس‌زمینه با نام `splash` است که به عنوان پس‌زمینه صفحه ابتدایی تنظیم شده است. طراحی این فایل ساده است و به سرعت اجرا می‌شود.
+
+
+### فایل DatabaseHandler.java
 
 این کد شامل کلاس `DatabaseHandler` می‌باشد که وظیفه مدیریت عملیات مربوط به پایگاه داده SQLite را بر عهده دارد.
 
@@ -436,7 +503,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 این متد برای دریافت اطلاعات یک کاربر بر اساس نام کاربری (`username`) استفاده می‌شود. مقادیر کاربر از جدول `User` استخراج شده و به صورت یک شیء `User` برگردانده می‌شود.
 
-### فایل `User.java`
+### فایل User.java
 
 این کد به تحلیل کلاس `User` پرداخته است که به عنوان مدل داده‌ای کاربران در اپلیکیشن اندروید بیمه استفاده می‌شود.
 
