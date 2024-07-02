@@ -39,6 +39,7 @@
             android:textAlignment="center"
             android:hint="@string/username_hint"
             android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:inputType="text"
             android:autofillHints="username"
             android:layout_below="@id/title"/>
@@ -50,6 +51,7 @@
             android:textAlignment="center"
             android:hint="@string/password_hint"
             android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:inputType="textPassword"
             android:autofillHints="password"
             android:layout_below="@id/username_field"/>
