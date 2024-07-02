@@ -29,4 +29,8 @@
     <string name="umbrella">umbrella</string>
     <string name="we_protect_you_like_an_umbrella">We Protect You Like An Umbrella!</string>
     <string name="register_to_get_cover">Register To Get Cover!</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="get_otp">Get OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="verify_otp">Verify OTP</string>
 </resources>

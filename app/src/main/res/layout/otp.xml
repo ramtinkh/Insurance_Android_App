@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/black_to_blue">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <EditText
+            android:id="@+id/idEdtPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:hint="@string/enter_your_email"
+            android:gravity="center"
+            android:textColorHint="@color/white"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            tools:ignore="TextFields" />
+
+        <Button
+            android:id="@+id/idBtnGetOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtPhoneNumber"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/get_otp"
+            android:textAllCaps="false" />
+
+        <EditText
+            android:id="@+id/idEdtOtp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idBtnGetOtp"
+            android:layout_margin="10dp"
+            android:textColorHint="@color/white"
+            android:hint="@string/enter_otp"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/idBtnVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtOtp"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/verify_otp"
+            android:textAllCaps="false" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
