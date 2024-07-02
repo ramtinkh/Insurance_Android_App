@@ -134,7 +134,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/register_button"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/black"/>
+                android:backgroundTint="@color/black"
+                android:onClick="onClickButton"/>
 
         </RelativeLayout>
 
