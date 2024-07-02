@@ -291,3 +291,80 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 ```
 
 این متد برای دریافت اطلاعات یک کاربر بر اساس نام کاربری (`username`) استفاده می‌شود. مقادیر کاربر از جدول `User` استخراج شده و به صورت یک شیء `User` برگردانده می‌شود.
+
+### فایل `User.java`
+
+این کد به تحلیل کلاس `User` پرداخته است که به عنوان مدل داده‌ای کاربران در اپلیکیشن اندروید بیمه استفاده می‌شود.
+
+#### پکیج‌ و تعریف کلاس
+
+```java
+package com.example.insurance_android_app;
+
+public class User {
+    private int id;
+    private String username;
+    private String password;
+    private String email;
+    private String deviceId;
+
+    public User() {}
+
+    public User(int id, String username, String password, String email, String deviceId) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.deviceId = deviceId;
+    }
+```
+
+این کلاس شامل تعریف فیلدهای خصوصی (private) برای ذخیره اطلاعات کاربر مانند شناسه، نام کاربری، رمز عبور، ایمیل و شناسه دستگاه است. همچنین دارای دو constructor می‌باشد: یکی بدون پارامتر و دیگری با پارامترهای لازم برای مقداردهی فیلدها.
+
+#### متدهای getter و setter
+
+```java
+    public int getId() {
+        return id;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+}
+```
+
+این بخش شامل متدهای getter و setter برای هر یک از فیلدهای خصوصی است. این متدها به encapsulation داده‌ها کمک می‌کنند و امکان دسترسی و تغییر امن اطلاعات کاربر را فراهم می‌سازند.
+
