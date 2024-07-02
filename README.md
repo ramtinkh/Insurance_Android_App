@@ -503,7 +503,7 @@ public class Dashboard extends AppCompatActivity {
 
 در این بخش، اطلاعات مربوط به بیمه کوآلا شامل تصویر، عنوان و دکمه خرید نمایش داده می‌شود.
 
-#### Layout های دیگر بیمه
+#### بیمه های دیگر
 
 بخش‌های دیگر مشابه با `koala_layout` طراحی شده‌اند و شامل بیمه‌های مختلف مانند `money`, `fire`, `medic`, `airplane`, `ship`, و `thief` می‌باشند. هر کدام شامل تصویر، عنوان، دکمه خرید و قیمت مخصوص به خود می‌باشد.
 
@@ -523,6 +523,266 @@ public class Dashboard extends AppCompatActivity {
 ```
 
 این دکمه به کاربر امکان خروج از حساب کاربری را می‌دهد.
+
+### فایل `admin_dashboard.xml`
+
+#### تعریف XML و Layout کلی
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/black_to_red"
+    tools:context=".AdminDashboard">
+```
+
+در این بخش، `RelativeLayout` به عنوان ریشه‌ی رابط کاربری انتخاب شده است. همچنین، `xmlns` های مورد نیاز تعریف شده و پس‌زمینه به `black_to_red` تنظیم شده است.
+
+#### بخش اطلاعات کاربر
+
+```xml
+    <RelativeLayout
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/person_logo"
+            android:layout_width="80dp"
+            android:layout_height="69dp"
+            android:src="@drawable/person_blue"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ramtin"
+            android:textColor="@color/royalblue"
+            android:textSize="30sp"
+            android:layout_alignBaseline="@+id/person_logo"
+            android:layout_toEndOf="@id/person_logo"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance:"
+            android:textColor="@color/royalblue"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+```
+
+در این بخش، اطلاعات کاربر شامل یک تصویر و دو `TextView` برای نمایش نام کاربری و موجودی حساب کاربر نمایش داده می‌شود.
+
+#### نمایش اطلاعات TextView
+
+```xml
+    <TextView
+        android:id="@+id/my_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttons_show"/>
+```
+
+این `TextView` برای نمایش اطلاعات کاربران و بیمه‌ها استفاده می‌شود که از پایگاه داده گرفته می‌شود.
+
+#### دکمه‌های نمایش اطلاعات کاربران و بیمه‌ها
+
+```xml
+    <RelativeLayout
+        android:id="@+id/buttons_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/user_info">
+
+        <Button
+            android:id="@+id/show_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/royalblue"
+            android:layout_toRightOf="@id/show_insurances"
+            android:text="Show Users"
+            android:onClick="onClickButton"/>
+
+        <Button
+            android:id="@+id/show_insurances"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/royalblue"
+            android:text="Show Insurances"
+            android:onClick="onClickButton"/>
+
+    </RelativeLayout>
+```
+
+این دکمه‌ها برای نمایش اطلاعات کاربران و بیمه‌ها استفاده می‌شوند. با کلیک بر روی هر کدام از این دکمه‌ها، اطلاعات مربوطه در `TextView` نمایش داده می‌شود.
+
+#### دکمه خروج از حساب کاربری
+
+```xml
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/royalblue"
+        android:text="Logout"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="onClickButton"/>
+</RelativeLayout>
+```
+
+این دکمه به کاربر امکان خروج از حساب کاربری را می‌دهد و با کلیک بر روی آن، کاربر به صفحه اصلی اپلیکیشن منتقل می‌شود.
+
+### فایل `AdminDashboard.java`
+
+کلاس `AdminDashboard` برای نمایش داشبورد ادمین در اپلیکیشن بیمه اندروید طراحی شده است. در این کلاس، دو تابع برای نمایش تمامی کاربران و تمامی بیمه‌ها از پایگاه داده و یک تابع برای هندل کردن کلیک دکمه‌ها وجود دارد.
+
+#### ایمپورت پکیج‌ها و تعریف کلاس
+
+```java
+package com.example.insurance_android_app;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
+
+public class AdminDashboard extends AppCompatActivity {
+    private DatabaseHandler db;
+    TextView tv;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.admin_dashboard);
+
+        tv = (TextView) findViewById(R.id.my_tv);
+
+        db = new DatabaseHandler(this);
+    }
+
+    void show_all_users(DatabaseHandler db) {
+        List<User> all_contacts = db.getAllUsers();
+        tv.append("All Users: " + "\n");
+        for (User c : all_contacts) {
+            tv.append(c.getId() + " | " + c.getUsername() + " | " + c.getBalance() + "\n");
+        }
+        tv.append("\n");
+    }
+
+    void show_all_insurances(DatabaseHandler db) {
+        List<Insurance> allInsurances = db.getAllInsurances();
+        tv.append("All Insurances: " + "\n");
+        for (Insurance c : allInsurances) {
+            tv.append(c.getId() + " | " + c.getName() + " | for user " + c.getUserId() + "\n");
+            System.out.println("User: " + c.getUserId());
+        }
+        tv.append("\n");
+    }
+
+    public void onClickButton(View view) {
+        if (view.getId() == R.id.show_insurances) {
+            tv.setText("");
+            show_all_insurances(db);
+        }
+        if (view.getId() == R.id.show_users) {
+            tv.setText("");
+            show_all_users(db);
+        }
+        if (view.getId() == R.id.logout) {
+            Intent intent = new Intent(AdminDashboard.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
+}
+```
+
+
+#### متغیرها و توابع
+
+- **متغیر `db`**: یک نمونه از کلاس `DatabaseHandler` برای مدیریت ارتباط با پایگاه داده.
+- **متغیر `tv`:**`TextView` برای نمایش اطلاعات کاربران و بیمه‌ها.
+
+#### تابع `onCreate`
+
+```java
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.admin_dashboard);
+
+    tv = (TextView) findViewById(R.id.my_tv);
+
+    db = new DatabaseHandler(this);
+}
+```
+
+این تابع هنگام ایجاد فعالیت فراخوانی می‌شود و viewی `admin_dashboard` را تنظیم کرده و `TextView` و `DatabaseHandler` را مقداردهی اولیه می‌کند.
+
+#### توابع `show_all_users` و `show_all_insurances`
+
+```java
+void show_all_users(DatabaseHandler db) {
+    List<User> all_contacts = db.getAllUsers();
+    tv.append("All Users: " + "\n");
+    for (User c : all_contacts) {
+        tv.append(c.getId() + " | " + c.getUsername() + " | " + c.getBalance() + "\n");
+    }
+    tv.append("\n");
+}
+
+void show_all_insurances(DatabaseHandler db) {
+    List<Insurance> allInsurances = db.getAllInsurances();
+    tv.append("All Insurances: " + "\n");
+    for (Insurance c : allInsurances) {
+        tv.append(c.getId() + " | " + c.getName() + " | for user " + c.getUserId() + "\n");
+        System.out.println("User: " + c.getUserId());
+    }
+    tv.append("\n");
+}
+```
+
+این توابع تمامی کاربران و بیمه‌ها را از پایگاه داده می‌گیرند و آن‌ها را در `TextView` نمایش می‌دهند.
+
+#### تابع `onClickButton`
+
+```java
+public void onClickButton(View view) {
+    if (view.getId() == R.id.show_insurances) {
+        tv.setText("");
+        show_all_insurances(db);
+    }
+    if (view.getId() == R.id.show_users) {
+        tv.setText("");
+        show_all_users(db);
+    }
+    if (view.getId() == R.id.logout) {
+        Intent intent = new Intent(AdminDashboard.this, MainActivity.class);
+        startActivity(intent);
+    }
+}
+```
+
+این تابع برای هندل کردن کلیک دکمه‌ها استفاده می‌شود. بر اساس `id` دکمه، تابع مناسب برای نمایش کاربران یا بیمه‌ها فراخوانی می‌شود. همچنین، اگر دکمه خروج کلیک شود، کاربر به صفحه اصلی منتقل می‌شود.
+
+
 
 ### `فایل splash.java`
 
