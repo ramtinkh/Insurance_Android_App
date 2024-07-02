@@ -79,6 +79,147 @@ public class MainActivity extends AppCompatActivity {
 - **دکمه ثبت نام (`register_button`)**: انتقال به صفحه ثبت نام انجام می‌شود.
 - **دکمه ریست دیتابیس (`reset_database`)**: دیتابیس ریست شده و پیغام مربوطه نمایش داده می‌شود.
 
+### فایل `activity_main`
+
+این فایل XML مربوط به رابط کاربری صفحه اصلی اپلیکیشن اندروید بیمه است.
+
+#### ساختار کلی
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/blue_to_black">
+```
+
+این `RelativeLayout` به عنوان ریشه تمام viewهای موجود در این صفحه عمل می‌کند. از `tools:context` برای تعیین کلاس فعالیت مرتبط با این رابط کاربری استفاده شده است و `android:background` برای تنظیم تصویر پس‌زمینه اعمال شده است.
+
+#### RelativeLayout مرکزی
+
+```xml
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+```
+
+این `RelativeLayout` در مرکز صفحه قرار دارد و شامل عناصری مانند `ImageView`، `TextView` و `EditText` می‌باشد.
+
+#### ImageView
+
+```xml
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="190dp"
+            android:layout_height="69dp"
+            android:src="@drawable/umbrella_logo"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/umbrella"
+            android:layout_centerHorizontal="true"/>
+```
+
+این عنصر یک تصویر لوگو با آی‌دی `imageView` است که در مرکز افقی قرار دارد.
+
+#### TextView
+
+```xml
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/we_protect_you_like_an_umbrella"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"/>
+```
+
+این عنصر متن با آی‌دی `title` در زیر `ImageView` قرار دارد و شامل پیامی است که به صورت برجسته نمایش داده می‌شود.
+
+#### تگ‌های EditText
+
+```xml
+        <EditText
+            android:id="@+id/username_field"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:hint="@string/username_hint"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="text"
+            android:autofillHints="username"
+            android:layout_below="@id/title"/>
+
+        <EditText
+            android:id="@+id/password_field"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAlignment="center"
+            android:hint="@string/password_hint"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            android:layout_below="@id/username_field"/>
+```
+
+این دو `EditText` برای ورود نام کاربری و رمز عبور کاربران استفاده می‌شوند. هر دو به صورت مرکزی تراز شده‌اند و به ترتیب در زیر عنوان و فیلد نام کاربری قرار دارند.
+
+#### دکمه‌ها
+
+```xml
+        <RelativeLayout
+            android:id="@+id/buttons_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/password_field">
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/register_button"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/black"
+                android:onClick="onClickButton"/>
+
+            <Button
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_button"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/black"
+                android:layout_toRightOf="@+id/register_button"
+                android:layout_alignBaseline="@id/register_button"
+                android:onClick="onClickButton"/>
+        </RelativeLayout>
+```
+
+این دکمه‌ها برای ثبت نام و ورود کاربران طراحی شده‌اند و در یک `RelativeLayout` دیگر قرار دارند که به صورت افقی در مرکز صفحه تراز شده است. دکمه ثبت نام در سمت چپ و دکمه ورود در سمت راست قرار دارند.
+
+#### دکمه ریست دیتابیس
+
+```xml
+    <Button
+        android:id="@+id/reset_database"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Database"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/black"
+        android:onClick="onClickButton"/>
+```
+
+این دکمه برای ریست دیتابیس طراحی شده و در پایین‌ترین بخش صفحه قرار دارد.
+
 ### فایل `DatabaseHandler.java`
 
 این کد شامل کلاس `DatabaseHandler` می‌باشد که وظیفه مدیریت عملیات مربوط به پایگاه داده SQLite را بر عهده دارد.
