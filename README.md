@@ -837,5 +837,103 @@ public class OTP extends AppCompatActivity {
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/157b0973-298f-4061-9bf5-d9545c90dccb)
 ![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/bc26d2e6-386c-4b25-a341-d5888215a133)
 
+###فایل otp.xml
 
+این فایل XML مربوط به رابط کاربری صفحه OTP (رمز یک‌بار مصرف) در اپلیکیشن اندروید بیمه است. 
+
+#### ساختار کلی
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/black_to_blue">
+```
+
+این `RelativeLayout` به عنوان ریشه تمام viewهای موجود در این صفحه عمل می‌کند و از `android:background` برای تنظیم تصویر پس‌زمینه استفاده شده است.
+
+#### RelativeLayout مرکزی
+
+```xml
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+```
+
+این `RelativeLayout` در مرکز عمودی صفحه قرار دارد و شامل عناصر ورودی و دکمه‌ها است.
+
+#### EditText برای شماره تلفن
+
+```xml
+        <EditText
+            android:id="@+id/idEdtPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:hint="@string/_9121111111"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            tools:ignore="TextFields" />
+```
+
+این `EditText` با آی‌دی `idEdtPhoneNumber` برای وارد کردن شماره تلفن کاربران استفاده می‌شود. به‌طور مرکزی تراز شده و با حاشیه‌ای برابر از اطراف قرار گرفته است. 
+
+#### دکمه برای دریافت OTP
+
+```xml
+        <Button
+            android:id="@+id/idBtnGetOtp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtPhoneNumber"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/get_otp"
+            android:textAllCaps="false" />
+```
+
+این دکمه با آی‌دی `idBtnGetOtp` برای ارسال درخواست OTP به شماره تلفن وارد شده توسط کاربر استفاده می‌شود و در زیر `EditText` شماره تلفن قرار دارد.
+
+#### EditText برای وارد کردن OTP
+
+```xml
+        <EditText
+            android:id="@+id/idEdtOtp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idBtnGetOtp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:hint="@string/enter_otp"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress" />
+```
+
+این `EditText` با آی‌دی `idEdtOtp` برای وارد کردن کد OTP توسط کاربر استفاده می‌شود و در زیر دکمه دریافت OTP قرار دارد. این عنصر نیز به‌طور مرکزی تراز شده است.
+
+#### دکمه برای تأیید OTP
+
+```xml
+        <Button
+            android:id="@+id/idBtnVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idEdtOtp"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/verify_otp"
+            android:textAllCaps="false" />
+```
+
+این دکمه با آی‌دی `idBtnVerify` برای تأیید کد OTP وارد شده توسط کاربر استفاده می‌شود و در زیر `EditText` وارد کردن OTP قرار دارد.
 
