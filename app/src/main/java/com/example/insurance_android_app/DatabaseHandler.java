@@ -21,7 +21,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_BALANCE = "balance";
 
 
-    private static final String TABLE_BUY = "User";
+    private static final String TABLE_BUY = "Buy";
     private static final String KEY_ID_BUY = "id";
     private static final String KEY_NAME_BUY = "name";
     private static final String KEY_USERID_BUY = "userId";
@@ -117,7 +117,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_NAME_BUY, String.join(",", insurance.getName()));
         values.put(KEY_USERID_BUY, insurance.getUserId());
         values.put(KEY_EXP_BUY, insurance.getExpiryDate().toString());
-        db.insert(TABLE_USER, null, values);
+        db.insert(TABLE_BUY, null, values);
         db.close();
     }
 
@@ -164,6 +164,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void resetDb() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BUY);
         createDB();
     }
 
@@ -174,6 +175,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_PASSWORD + " TEXT," + KEY_DEVICE_ID + " TEXT,"
                 + KEY_BALANCE + " INTEGER," + KEY_EMAIL + " TEXT" + ")";
         db.execSQL(CREATE_USER_TABLE);
+
+        String CREATE_BUY_TABLE = "CREATE TABLE " + TABLE_BUY + "("
+                + KEY_ID_BUY + " INTEGER PRIMARY KEY," + KEY_NAME_BUY + " TEXT,"
+                + KEY_USERID_BUY + " INTEGER," + KEY_EXP_BUY + " TEXT" + ")";
+        db.execSQL(CREATE_BUY_TABLE);
     }
 
     public User getUserById(int id) {

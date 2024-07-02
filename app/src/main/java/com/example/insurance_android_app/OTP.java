@@ -111,7 +111,7 @@ public class OTP extends AppCompatActivity {
                         .setCallbacks(mCallBack)           // OnVerificationStateChangedCallbacks
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
-        Toast.makeText(OTP.this, "OTP Sent!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(OTP.this, "OTP Sent!", Toast.LENGTH_SHORT).show();
     }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks

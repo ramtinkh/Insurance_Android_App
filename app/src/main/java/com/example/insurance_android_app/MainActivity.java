@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } else if (Objects.equals(user1.getPassword(), pass)) {
                 Toast.makeText(getBaseContext(), "Congrats! You were perfectly logged in.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                Intent intent = new Intent(MainActivity.this, OTP.class);
                 intent.putExtra("id", user1.getId());
                 startActivity(intent);
             } else { Toast.makeText(getBaseContext(), "Sorry you're wrong.", Toast.LENGTH_LONG).show();}

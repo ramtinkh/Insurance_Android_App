@@ -61,6 +61,7 @@
             android:id="@+id/show_users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/royalblue"
             android:layout_toRightOf="@id/show_insurances"
             android:text="Show Users"
             android:onClick="onClickButton"/>
@@ -69,9 +70,20 @@
             android:id="@+id/show_insurances"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/royalblue"
             android:text="Show Insurances"
             android:onClick="onClickButton"/>
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/royalblue"
+        android:text="Logout"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="onClickButton"/>
 
 </RelativeLayout>

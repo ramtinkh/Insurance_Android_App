@@ -1,6 +1,7 @@
 package com.example.insurance_android_app;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -34,10 +35,11 @@ public class AdminDashboard extends AppCompatActivity {
     }
 
     void show_all_insurances(DatabaseHandler db) {
-        List<Insurance> all_contacts = db.getAllInsurances();
+        List<Insurance> allInsurances = db.getAllInsurances();
         tv.append("All Insurances: " + "\n");
-        for (Insurance c : all_contacts) {
+        for (Insurance c : allInsurances) {
             tv.append(c.getId() + " | " + c.getName() + " | for user " + c.getUserId() + "\n");
+            System.out.println("User: " + c.getUserId());
         }
         tv.append("\n");
     }
@@ -50,6 +52,10 @@ public class AdminDashboard extends AppCompatActivity {
         if (view.getId() == R.id.show_users) {
             tv.setText("");
             show_all_users(db);
+        }
+        if (view.getId() == R.id.logout) {
+            Intent intent = new Intent(AdminDashboard.this, MainActivity.class);
+            startActivity(intent);
         }
     }
 }
