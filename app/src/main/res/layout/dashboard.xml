@@ -1,6 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/white_to_blue"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/person_logo"
+            android:layout_width="80dp"
+            android:layout_height="69dp"
+            android:src="@drawable/person_blue"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ramtin"
+            android:textColor="@color/royalblue"
+            android:textSize="30sp"
+            android:layout_alignBaseline="@+id/person_logo"
+            android:layout_toEndOf="@id/person_logo"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance:"
+            android:textColor="@color/royalblue"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_info">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/koala"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/koala"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/koala_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Koala Insurance For Full Services."
+                    android:layout_toRightOf="@+id/koala"/>
+
+                <Button
+                    android:id="@+id/buy_koala"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Koala"
+                    android:layout_below="@id/koala_title"
+                    android:layout_alignStart="@id/koala_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/money"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/money"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/money_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Money Insurance To Protect Your Money!"
+                    android:layout_toRightOf="@+id/money"/>
+
+                <Button
+                    android:id="@+id/buy_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Money"
+                    android:layout_below="@id/money_title"
+                    android:layout_alignStart="@id/money_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/fire"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/fire_insurance"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/fire_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Fire Insurance To Beat Fire!"
+                    android:layout_toRightOf="@+id/fire"/>
+
+                <Button
+                    android:id="@+id/buy_fire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Fire"
+                    android:layout_below="@id/fire_title"
+                    android:layout_alignStart="@id/fire_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/medic"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/medic"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/medic_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Medic Insurance To Keep Yourself Healthy!"
+                    android:layout_toRightOf="@+id/medic"/>
+
+                <Button
+                    android:id="@+id/buy_medic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Medic"
+                    android:layout_below="@id/medic_title"
+                    android:layout_alignStart="@id/medic_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/airplane"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/airplane"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/airplane_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Airplane Insurance To Cover All Possibilities."
+                    android:layout_toRightOf="@+id/airplane"/>
+
+                <Button
+                    android:id="@+id/buy_airplane"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Airplane"
+                    android:layout_below="@id/airplane_title"
+                    android:layout_alignStart="@id/airplane_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/ship"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ship"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/ship_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Ship Insurance To Cover All Possibilities."
+                    android:layout_toRightOf="@+id/ship"/>
+
+                <Button
+                    android:id="@+id/buy_ship"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy ship"
+                    android:layout_below="@id/ship_title"
+                    android:layout_alignStart="@id/ship_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/thief"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/thief"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/thief_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="Thief Insurance To Cover All Possibilities."
+                    android:layout_toRightOf="@+id/thief"/>
+
+                <Button
+                    android:id="@+id/buy_thief"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Thief"
+                    android:layout_below="@id/thief_title"
+                    android:layout_alignStart="@id/thief_title"
+                    android:backgroundTint="@color/royalblue"
+                    android:layout_marginStart="60dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

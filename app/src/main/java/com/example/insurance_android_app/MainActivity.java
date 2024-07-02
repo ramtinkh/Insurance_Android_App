@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "User not exists.", Toast.LENGTH_SHORT).show();
             } else if (Objects.equals(user1.getPassword(), pass)) {
                 Toast.makeText(getBaseContext(), "Congrats! You were perfectly logged in.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, OTP.class);
+                Intent intent = new Intent(MainActivity.this, Dashboard.class);
                 startActivity(intent);
             } else { Toast.makeText(getBaseContext(), "Sorry you're wrong.", Toast.LENGTH_LONG).show();}
         } else if (view.getId() == R.id.register_button) {
