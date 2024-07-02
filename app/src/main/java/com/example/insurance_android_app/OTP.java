@@ -37,6 +37,8 @@ public class OTP extends AppCompatActivity {
 
     private String verificationId;
 
+    private int id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,9 +51,12 @@ public class OTP extends AppCompatActivity {
         verifyOTPBtn = findViewById(R.id.idBtnVerify);
         generateOTPBtn = findViewById(R.id.idBtnGetOtp);
 
+        Intent intent = getIntent();
+        id = intent.getIntExtra("id", -1);
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Toast.makeText(OTP.this, "Someone is logged in!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(OTP.this, currentUser.getDisplayName() + " is logged in!", Toast.LENGTH_SHORT).show();
         } else{
             Toast.makeText(OTP.this, "No one is here.", Toast.LENGTH_SHORT).show();
         }
@@ -87,6 +92,7 @@ public class OTP extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Intent i = new Intent(OTP.this, Dashboard.class);
+                            i.putExtra("id", id);
                             startActivity(i);
                             finish();
                         } else {

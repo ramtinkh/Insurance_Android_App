@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/white_to_blue"
-    tools:context=".MainActivity">
+    tools:context=".Dashboard">
 
     <RelativeLayout
         android:id="@+id/user_info"
@@ -47,14 +47,26 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/user_info">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical">
+            android:gravity="center">
 
-            <RelativeLayout
+            <Button
+                android:id="@+id/add_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Add Balance"
+                android:backgroundTint="@color/blueviolet"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:onClick="onClickButton"/>
+
+            <RelativeLayout
+                android:id="@+id/koala_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_balance"
                 android:layout_margin="20dp">
 
                 <ImageView
@@ -81,14 +93,27 @@
                     android:layout_below="@id/koala_title"
                     android:layout_alignStart="@id/koala_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/koala_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="100$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_koala"
+                    android:layout_toRightOf="@+id/buy_koala"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/money_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:layout_margin="20dp"
+                android:layout_below="@id/koala_layout">
 
                 <ImageView
                     android:id="@+id/money"
@@ -114,11 +139,24 @@
                     android:layout_below="@id/money_title"
                     android:layout_alignStart="@id/money_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/money_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="30$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_money"
+                    android:layout_toRightOf="@+id/buy_money"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/fire_layout"
+                android:layout_below="@id/money_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
@@ -147,11 +185,24 @@
                     android:layout_below="@id/fire_title"
                     android:layout_alignStart="@id/fire_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/fire_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="30$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_fire"
+                    android:layout_toRightOf="@+id/buy_fire"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/medic_layout"
+                android:layout_below="@id/fire_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
@@ -180,11 +231,24 @@
                     android:layout_below="@id/medic_title"
                     android:layout_alignStart="@id/medic_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/medic_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="30$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_medic"
+                    android:layout_toRightOf="@+id/buy_medic"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/airplane_layout"
+                android:layout_below="@id/medic_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
@@ -213,11 +277,24 @@
                     android:layout_below="@id/airplane_title"
                     android:layout_alignStart="@id/airplane_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/airplane_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="30$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_airplane"
+                    android:layout_toRightOf="@+id/buy_airplane"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/ship_layout"
+                android:layout_below="@id/airplane_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
@@ -246,11 +323,24 @@
                     android:layout_below="@id/ship_title"
                     android:layout_alignStart="@id/ship_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/ship_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="30$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_ship"
+                    android:layout_toRightOf="@+id/buy_ship"/>
 
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/thief_layout"
+                android:layout_below="@id/ship_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
@@ -279,11 +369,33 @@
                     android:layout_below="@id/thief_title"
                     android:layout_alignStart="@id/thief_title"
                     android:backgroundTint="@color/royalblue"
+                    android:onClick="onClickButton"
                     android:layout_marginStart="60dp"/>
+
+                <TextView
+                    android:id="@+id/thief_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="30$"
+                    android:layout_marginStart="10dp"
+                    android:layout_alignBaseline="@id/buy_thief"
+                    android:layout_toRightOf="@+id/buy_thief"/>
 
             </RelativeLayout>
 
-        </LinearLayout>
+            <Button
+                android:id="@+id/logout"
+                android:layout_below="@id/thief_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:backgroundTint="@color/black"
+                android:layout_centerHorizontal="true"
+                android:onClick="onClickButton"
+                android:layout_marginBottom="30dp"/>
+
+        </RelativeLayout>
 
     </ScrollView>
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/black_to_red"
+    tools:context=".AdminDashboard">
+
+    <RelativeLayout
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/person_logo"
+            android:layout_width="80dp"
+            android:layout_height="69dp"
+            android:src="@drawable/person_blue"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ramtin"
+            android:textColor="@color/royalblue"
+            android:textSize="30sp"
+            android:layout_alignBaseline="@+id/person_logo"
+            android:layout_toEndOf="@id/person_logo"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balance:"
+            android:textColor="@color/royalblue"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/my_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttons_show"/>
+
+    <RelativeLayout
+        android:id="@+id/buttons_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/user_info">
+
+        <Button
+            android:id="@+id/show_users"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/show_insurances"
+            android:text="Show Users"
+            android:onClick="onClickButton"/>
+
+        <Button
+            android:id="@+id/show_insurances"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Insurances"
+            android:onClick="onClickButton"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

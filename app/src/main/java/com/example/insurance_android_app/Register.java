@@ -73,7 +73,7 @@ public class Register extends AppCompatActivity {
         String result = "Hello " + fName + ". You have register with email address: " + emailAddress + ".";
         Toast.makeText(getBaseContext(), result, Toast.LENGTH_SHORT).show();
 
-        int userId = db.getRowCount() + 1;
+        int userId = db.getUsersRowCount() + 1;
         User user = new User(userId, fName, pass, emailAddress, deviceId);
         db.addUser(user);
     }

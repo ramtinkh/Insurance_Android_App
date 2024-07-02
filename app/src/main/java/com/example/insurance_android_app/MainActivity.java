@@ -34,9 +34,15 @@ public class MainActivity extends AppCompatActivity {
             User user1 = db.getUserByUsername(user);
             if (user1 == null) {
                 Toast.makeText(getBaseContext(), "User not exists.", Toast.LENGTH_SHORT).show();
+            } else if (Objects.equals(user1.getPassword(), pass) && user.equals("admin")) {
+                Toast.makeText(getBaseContext(), "Welcome Back Admin.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, AdminDashboard.class);
+                intent.putExtra("id", user1.getId());
+                startActivity(intent);
             } else if (Objects.equals(user1.getPassword(), pass)) {
                 Toast.makeText(getBaseContext(), "Congrats! You were perfectly logged in.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                intent.putExtra("id", user1.getId());
                 startActivity(intent);
             } else { Toast.makeText(getBaseContext(), "Sorry you're wrong.", Toast.LENGTH_LONG).show();}
         } else if (view.getId() == R.id.register_button) {

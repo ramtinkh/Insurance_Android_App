@@ -6,6 +6,7 @@ public class User {
     private String password;
     private String email;
     private String deviceId;
+    private int balance;
 
 
     public User() {}
@@ -16,10 +17,28 @@ public class User {
         this.password = password;
         this.email = email;
         this.deviceId = deviceId;
+        this.balance = 0;
+    }
+
+    public User(int id, String username, String password, String email, String deviceId, int balance) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.deviceId = deviceId;
+        this.balance = balance;
     }
 
     public int getId() {
         return id;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
 
     public String getDeviceId() {
