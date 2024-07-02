@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 - **دکمه ثبت نام (`register_button`)**: انتقال به صفحه ثبت نام انجام می‌شود.
 - **دکمه ریست دیتابیس (`reset_database`)**: دیتابیس ریست شده و پیغام مربوطه نمایش داده می‌شود.
 
-### فایل `activity_main`
+### فایل `activity_main.xml`
 
 این فایل XML مربوط به رابط کاربری صفحه اصلی اپلیکیشن اندروید بیمه است.
 
@@ -219,6 +219,9 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 این دکمه برای ریست دیتابیس طراحی شده و در پایین‌ترین بخش صفحه قرار دارد.
+
+![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/79330ba6-d694-4c3b-b7e5-1481a48aabb0)
+
 
 ### فایل `DatabaseHandler.java`
 
@@ -648,6 +651,204 @@ public class Register extends AppCompatActivity {
 
 این متد برای پردازش کلیک بر روی دکمه ثبت نام استفاده می‌شود. اطلاعات کاربر خوانده شده و متد `makeToast` فراخوانی می‌شود. سپس، یک Intent برای بازگشت به صفحه اصلی (MainActivity) ایجاد و شروع می‌شود.
 
+### فایل register.xml
+
+این فایل مربوط به رابط کاربری صفحه ثبت نام در اپلیکیشن اندروید بیمه است.
+
+#### ساختار کلی
+
+```xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Register"
+    android:background="@drawable/blue_to_black">
+```
+
+این `RelativeLayout` به عنوان ریشه تمام viewهای موجود در این صفحه عمل می‌کند و از `android:background` برای تنظیم تصویر پس‌زمینه استفاده شده است.
+
+#### RelativeLayout مرکزی
+
+```xml
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+```
+
+این `RelativeLayout` در مرکز صفحه قرار دارد و شامل عناصری مانند لوگو، عنوان، فیلدهای ورود اطلاعات و دکمه ثبت نام است.
+
+#### ImageView برای نمایش لوگو
+
+```xml
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="190dp"
+            android:layout_height="69dp"
+            android:src="@drawable/umbrella_logo"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/coffee"
+            android:layout_centerHorizontal="true"/>
+```
+
+این `ImageView` برای نمایش لوگوی اپلیکیشن استفاده می‌شود و به‌طور مرکزی تراز شده است.
+
+#### TextView برای عنوان
+
+```xml
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_to_get_cover"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true"/>
+```
+
+این `TextView` عنوان صفحه ثبت نام را نمایش می‌دهد و در زیر لوگو قرار دارد.
+
+#### RelativeLayout برای فیلد ورود نام کاربری
+
+```xml
+        <RelativeLayout
+            android:id="@+id/username_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/title">
+            
+            <TextView
+                android:id="@+id/username_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/username_header"/>
+            
+            <EditText
+                android:id="@+id/username_field"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:autofillHints="username"
+                android:hint="@string/username_hint"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBaseline="@id/username_title"
+                android:layout_toRightOf="@id/username_title"/>
+            
+        </RelativeLayout>
+```
+
+این `RelativeLayout` شامل یک `TextView` برای نمایش عنوان "نام کاربری" و یک `EditText` برای وارد کردن نام کاربری است. 
+
+#### RelativeLayout برای فیلد ورود کلمه عبور
+
+```xml
+        <RelativeLayout
+            android:id="@+id/password_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/username_layout"
+            android:layout_marginTop="15dp">
+            
+            <TextView
+                android:id="@+id/password_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/password_header"/>
+            
+            <EditText
+                android:id="@+id/password_field"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:autofillHints="password"
+                android:textColorHint="@color/white"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBaseline="@id/password_title"
+                android:layout_toEndOf="@id/password_title"/>
+            
+        </RelativeLayout>
+```
+
+این `RelativeLayout` شامل یک `TextView` برای نمایش عنوان "کلمه عبور" و یک `EditText` برای وارد کردن کلمه عبور است.
+
+#### RelativeLayout برای فیلد ورود ایمیل
+
+```xml
+        <RelativeLayout
+            android:id="@+id/email_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/password_layout"
+            android:layout_marginTop="15dp">
+            
+            <TextView
+                android:id="@+id/email_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/email_header"/>
+            
+            <EditText
+                android:id="@+id/email_field"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:autofillHints="email"
+                android:layout_toEndOf="@id/email_title"
+                android:layout_alignBaseline="@+id/email_title"/>
+            
+        </RelativeLayout>
+```
+
+این `RelativeLayout` شامل یک `TextView` برای نمایش عنوان "ایمیل" و یک `EditText` برای وارد کردن ایمیل است.
+
+#### RelativeLayout برای دکمه ثبت نام
+
+```xml
+        <RelativeLayout
+            android:id="@+id/button_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/email_layout">
+            
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/register_button"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="@color/black"
+                android:onClick="onClickButton"/>
+            
+        </RelativeLayout>
+```
+
+این `RelativeLayout` شامل یک دکمه برای ثبت نام کاربران است که در زیر فیلد ایمیل قرار دارد و با رنگ مشکی تنظیم شده است.
+
+![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/d4d329be-19c2-4917-a375-e5a7da57561b)
+
+
 ### فایل OTP.java
 
 این گزارش به بررسی کد کلاس `OTP` پرداخته است که برای تایید شماره تلفن کاربران با استفاده از کد OTP در اپلیکیشن اندروید بیمه استفاده می‌شود.
@@ -936,4 +1137,9 @@ public class OTP extends AppCompatActivity {
 ```
 
 این دکمه با آی‌دی `idBtnVerify` برای تأیید کد OTP وارد شده توسط کاربر استفاده می‌شود و در زیر `EditText` وارد کردن OTP قرار دارد.
+
+![image](https://github.com/ramtinkh/Insurance_Android_App/assets/62210678/41e55f1c-c847-4cff-b93f-1083e596830b)
+
+
+
 
