@@ -835,22 +835,49 @@ public class splash extends AppCompatActivity {
 
 ### فایل `splash_activity.xml`
 
-#### عناصر XML و ویژگی‌ها
+#### تعریف XML و Layout کلی
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".splash"
-    android:background="@drawable/splash">
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="@color/blanchedalmond"
+    tools:context=".Splash">
 ```
-فایل `splash_activity.xml` یک رابط کاربری ساده برای صفحه ابتدایی اپلیکیشن اندروید فراهم می‌کند. در اینجا از `ConstraintLayout` استفاده شده است. این فایل شامل یک تصویر پس‌زمینه با نام `splash` است که به عنوان پس‌زمینه صفحه ابتدایی تنظیم شده است. طراحی این فایل ساده است و به سرعت اجرا می‌شود.
 
+در این بخش، `RelativeLayout` به عنوان ریشه‌ی رابط کاربری انتخاب شده است. همچنین، `xmlns` های مورد نیاز تعریف شده و پس‌زمینه به `blanchedalmond` تنظیم شده است.
+
+#### تصویر لوگوی چتر
+
+```xml
+    <ImageView
+        android:id="@+id/umbrella"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/umbrella_logo"/>
+```
+
+در این بخش، یک `ImageView` برای نمایش لوگوی چتر قرار داده شده است که در مرکز صفحه قرار گرفته و ابعاد آن ۱۵۰ در ۱۵۰ دپ می‌باشد.
+
+#### تصویر کوآلا
+
+```xml
+    <ImageView
+        android:layout_below="@+id/umbrella"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/koala"/>
+</RelativeLayout>
+```
+
+این بخش شامل یک `ImageView` دیگر است که تصویر کوآلا را نمایش می‌دهد. این تصویر در زیر لوگوی چتر و در مرکز صفحه قرار گرفته و ابعاد آن ۸۰ در ۸۰ دپ می‌باشد.
 
 ### فایل `DatabaseHandler.java`
 
